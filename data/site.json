@@ -1,0 +1,12 @@
+{
+  "owner": "Areeb Ahmed Khan",
+  "title": "Areeb Ahmed Khan - AI Automation Architect",
+  "description": "AI automation architect, product builder, and problem solver. Building intelligent systems that save time and scale operations.",
+  "url": "https://areebkhan.com",
+  "tagline": "AI automation architect. Product builder. Problem solver.",
+  "localeDefault": "en",
+  "locales": ["en", "ur"],
+  "email": "areeb@example.com",
+  "phone": "+92 300 1234567",
+  "calendarLink": "https://cal.com/areeb-khan"
+}

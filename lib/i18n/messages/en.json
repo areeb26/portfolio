@@ -1,0 +1,80 @@
+{
+  "nav": {
+    "home": "Home",
+    "work": "Work",
+    "services": "Services",
+    "about": "About",
+    "playbooks": "Playbooks",
+    "speaking": "Speaking",
+    "contact": "Contact"
+  },
+  "hero": {
+    "greeting": "Hello, I'm",
+    "name": "Areeb Ahmed Khan",
+    "tagline1": "AI Automation Architect",
+    "tagline2": "Product Builder",
+    "tagline3": "Problem Solver",
+    "description": "I build intelligent automation systems that save time, scale operations, and solve real problems.",
+    "ctaPrimary": "Book a Strategy Call",
+    "ctaSecondary": "View Work",
+    "metric1": "500+ hours saved",
+    "metric1Sub": "for teams in 2024",
+    "metric2": "100+ workflows",
+    "metric2Sub": "shipped across apps",
+    "metric3": "15k-18k learners",
+    "metric3Sub": "supported daily"
+  },
+  "socialProof": {
+    "title": "Trusted by Leading Platforms",
+    "subtitle": "Building automation solutions for education and service platforms"
+  },
+  "systems": {
+    "eyebrow": "Signature Systems",
+    "title": "Proven Frameworks That Scale",
+    "subtitle": "Battle-tested automation architectures ready to deploy",
+    "system1Title": "WhatsApp AI Bot OS",
+    "system1Desc": "Conversational AI with retrieval, routing, and analytics",
+    "system2Title": "n8n Automation Stack",
+    "system2Desc": "End-to-end workflow automation with error handling",
+    "system3Title": "Data QA Loop",
+    "system3Desc": "Validation, feedback, and continuous improvement",
+    "system4Title": "Agentic Retrieval",
+    "system4Desc": "Vector search with pgvector and intelligent ranking"
+  },
+  "work": {
+    "eyebrow": "Featured Work",
+    "title": "Case Studies",
+    "subtitle": "Real problems solved with automation",
+    "viewAll": "View All Work"
+  },
+  "services": {
+    "eyebrow": "Services",
+    "title": "How I Can Help",
+    "subtitle": "Packaged offerings designed for impact",
+    "viewAll": "View All Services"
+  },
+  "testimonials": {
+    "eyebrow": "Testimonials",
+    "title": "What Clients Say",
+    "subtitle": "Results speak louder than words"
+  },
+  "content": {
+    "eyebrow": "Latest Content",
+    "title": "Playbooks & Talks",
+    "playbooksTab": "Playbooks",
+    "talksTab": "Talks",
+    "viewAll": "View All"
+  },
+  "cta": {
+    "title": "Ready to Automate?",
+    "subtitle": "Book a 20-minute discovery call to discuss your automation needs",
+    "button": "Schedule Call"
+  },
+  "footer": {
+    "tagline": "Building intelligent automation systems",
+    "quickLinks": "Quick Links",
+    "resources": "Resources",
+    "connect": "Connect",
+    "rights": "All rights reserved"
+  }
+}

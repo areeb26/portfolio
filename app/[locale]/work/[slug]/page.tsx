@@ -1,20 +1,27 @@
 import { notFound } from 'next/navigation'
-import { useLocale } from 'next-intl'
+import { setRequestLocale } from 'next-intl/server'
 import { ArrowLeft, Calendar } from 'lucide-react'
 import Link from 'next/link'
 import { Button } from '@/components/ui/button'
 import { Badge } from '@/components/ui/badge'
 import caseStudies from '@/data/case-studies.json'
+import { locales } from '@/lib/i18n/request'
 
 export async function generateStaticParams() {
-  return caseStudies.map((study) => ({
-    slug: study.slug,
-  }))
+  const params = []
+  for (const locale of locales) {
+    for (const study of caseStudies) {
+      params.push({ locale, slug: study.slug })
+    }
+  }
+  return params
 }
 
-export default function CaseStudyPage({ params }: { params: { slug: string } }) {
+export default function CaseStudyPage({ params }: { params: { slug: string; locale: string } }) {
+  setRequestLocale(params.locale)
+
   const study = caseStudies.find((s) => s.slug === params.slug)
-  const locale = useLocale()
+  const locale = params.locale
 
   if (!study) {
     notFound()

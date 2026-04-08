@@ -37,7 +37,7 @@ export function Services() {
             const Icon = service.icon;
             return (
               <BlurFade key={service.id} delay={0.1 + index * 0.1} inView yOffset={15}>
-                <article className="group">
+                <article className="group glass-card p-8 rounded-2xl hover:-translate-y-2 transition-transform duration-500">
                   <div className="flex gap-6">
                     {/* Number */}
                     <div className="text-5xl font-light text-neutral-300 leading-none group-hover:text-accent transition-colors">

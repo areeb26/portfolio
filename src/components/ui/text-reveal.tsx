@@ -46,8 +46,8 @@ function Word({ children, progress, range }: WordProps) {
   const opacity = useTransform(progress, range, [0, 1]);
   return (
     <span className="relative mx-1 lg:mx-2">
-      <span className="absolute opacity-30">{children}</span>
-      <motion.span style={{ opacity }} className="text-foreground">
+      <span className="absolute opacity-5 select-none">{children}</span>
+      <motion.span style={{ opacity }} className="text-foreground relative z-10">
         {children}
       </motion.span>
     </span>

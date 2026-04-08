@@ -31,11 +31,13 @@ const itemVariants: Variants = {
 
 export function Hero() {
   return (
-    <section className="min-h-screen flex flex-col justify-center py-20 md:py-32">
-      {/* Removed old header */}
+    <section className="min-h-screen flex flex-col justify-center py-20 md:py-32 relative overflow-hidden">
+      {/* Background Orbs */}
+      <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-blue-500/15 blur-[120px] rounded-full -translate-y-1/2 translate-x-1/4 pointer-events-none z-0" />
+      <div className="absolute bottom-0 left-0 w-[500px] h-[500px] bg-violet-500/15 blur-[120px] rounded-full translate-y-1/2 -translate-x-1/4 pointer-events-none z-0" />
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[400px] h-[400px] bg-teal-500/8 blur-[100px] rounded-full pointer-events-none z-0" />
 
-      {/* Main hero content */}
-      <div className="container flex-1 flex flex-col justify-center">
+      <div className="container flex-1 flex flex-col justify-center relative z-10">
         {/* Label */}
         <BlurFade delay={0.25} yOffset={8}>
           <div className="mb-6 md:mb-8">

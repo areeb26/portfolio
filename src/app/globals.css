@@ -463,6 +463,23 @@ body {
 }
 
 /* ═══════════════════════════════════════════════════════════════════════════
+   GLASSMORPHISM - Modern editorial feel
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.glass-card {
+  background: rgba(255, 255, 255, 0.03);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  transition: all 0.35s var(--ease-out-quart);
+}
+
+.glass-card:hover {
+  background: rgba(255, 255, 255, 0.05);
+  border-color: rgba(255, 255, 255, 0.15);
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
    SCROLL INDICATOR
    ═══════════════════════════════════════════════════════════════════════════ */
 

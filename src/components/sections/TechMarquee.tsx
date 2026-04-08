@@ -11,6 +11,8 @@ const technologies = [
 ];
 
 export function TechMarquee() {
+  const repeatedTech = [...technologies, ...technologies, ...technologies];
+  
   return (
     <div className="w-full overflow-hidden bg-background py-16 border-y border-border relative">
       {/* Edge Fades */}
@@ -19,18 +21,18 @@ export function TechMarquee() {
       
       <div className="flex whitespace-nowrap">
         <motion.div
-          animate={{ x: [0, -1500] }}
+          animate={{ x: ["0%", "-33.33%"] }}
           transition={{
             x: {
               repeat: Infinity,
               repeatType: "loop",
-              duration: 30,
+              duration: 40,
               ease: "linear",
             },
           }}
-          className="flex items-center gap-16 md:gap-24"
+          className="flex items-center gap-16 md:gap-24 pr-16 md:pr-24"
         >
-          {technologies.map((tech, i) => (
+          {repeatedTech.map((tech, i) => (
             <span
               key={i}
               className="text-2xl md:text-3xl font-display text-neutral-300 hover:text-accent transition-colors cursor-default"

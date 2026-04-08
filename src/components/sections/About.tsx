@@ -100,7 +100,7 @@ export function About() {
                       delay: 0.3 + index * 0.05,
                       ease: [0.25, 1, 0.5, 1] 
                     }}
-                    className="flex items-center justify-between py-4 border-b border-border group"
+                    className="flex items-center justify-between p-4 border border-white/5 rounded-xl glass-card group"
                   >
                     <span className="text-lg font-medium group-hover:text-accent transition-colors">
                       {skill}

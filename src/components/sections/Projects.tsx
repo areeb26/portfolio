@@ -60,7 +60,7 @@ export function Projects() {
                   href={project.live || project.github || "#"}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="block py-8 md:py-12 border-t border-border hover:bg-white/5 hover:translate-y-[-6px] hover:shadow-[0_20px_40px_rgba(59,130,246,0.15)] transition-all duration-500 rounded-xl px-6 -mx-6 overflow-hidden glass-card"
+                  className="block py-8 md:py-12 border-t border-border hover:bg-white/5 hover:-translate-y-[6px] hover:shadow-[0_20px_40px_rgba(59,130,246,0.15)] transition-all duration-300 rounded-xl px-6 -mx-6 overflow-hidden glass-card"
                 >
                   <div className="grid md:grid-cols-12 gap-4 md:gap-8 items-start relative z-10">
                     {/* Number */}

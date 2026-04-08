@@ -1,7 +1,6 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { TextReveal } from "@/components/ui/text-reveal";
 
 const stats = [
   { value: "50+", label: "Automations Built" },
@@ -47,9 +46,9 @@ export function About() {
               transition={{ duration: 0.6, delay: 0.1, ease: [0.25, 1, 0.5, 1] }}
               className="space-y-6"
             >
-              <TextReveal className="!relative !h-auto !py-0 !sticky-none">
-                Also known as Khan Sahib. I'm an AI Automation Expert and Full-Stack Developer based in Pakistan, working with clients worldwide. I specialize in building intelligent systems that automate workflows, generate content, and scale businesses—without requiring more people.
-              </TextReveal>
+              <p className="text-xl font-medium text-foreground/80 md:text-2xl lg:text-3xl leading-relaxed">
+                Also known as Khan Sahib. I&apos;m an AI Automation Expert and Full-Stack Developer based in Pakistan, working with clients worldwide. I specialize in building intelligent systems that automate workflows, generate content, and scale businesses—without requiring more people.
+              </p>
               
               <p className="text-body mt-8">
                 Every system I build is designed to be reliable and invisible. The best 

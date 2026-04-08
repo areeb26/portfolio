@@ -1,0 +1,18 @@
+<svg width="1200" height="630" viewBox="0 0 1200 630" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1200" height="630" fill="#FAFAF8"/>
+  <rect x="0" y="0" width="1200" height="630" fill="url(#noise)" opacity="0.03"/>
+  
+  <text x="80" y="240" fill="#0E0E0E" font-family="Georgia, serif" font-size="96" font-weight="400" letter-spacing="-0.03em">Areeb Khan</text>
+  <text x="80" y="340" fill="#424242" font-family="Arial, sans-serif" font-size="32" font-weight="500" letter-spacing="0.1em" text-transform="uppercase">AI Automation & Full-Stack</text>
+  
+  <rect x="80" y="380" width="120" height="4" fill="#B13A1A"/>
+  
+  <text x="80" y="520" fill="#424242" font-family="Arial, sans-serif" font-size="24" font-weight="400" max-width="800">I build systems that work while you sleep.</text>
+  <text x="80" y="560" fill="#424242" font-family="Arial, sans-serif" font-size="24" font-weight="400">n8n · AI Agents · Next.js</text>
+  
+  <defs>
+    <filter id="noise">
+      <feTurbulence type="fractalNoise" baseFrequency="0.65" numOctaves="3" stitchTiles="stitch"/>
+    </filter>
+  </defs>
+</svg>

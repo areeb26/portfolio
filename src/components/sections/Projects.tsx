@@ -1,98 +1,19 @@
 "use client";
 
-import { useRef } from "react";
-import {
-  motion,
-  useScroll,
-  useTransform,
-  useSpring,
-  Variants,
-} from "framer-motion";
+import { motion, Variants } from "framer-motion";
 import { ArrowUpRight } from "lucide-react";
 import { projects } from "@/data/projects";
-import type { Project } from "@/data/projects";
 
 const easeOutExpo = [0.16, 1, 0.3, 1] as const;
 
-interface ProjectCard3DProps {
-  project: Project;
-  index: number;
-}
+const listVariants: Variants = {
+  hidden: { opacity: 0 },
+  visible: { opacity: 1, transition: { staggerChildren: 0.07 } },
+};
 
-function ProjectCard3D({ project, index }: ProjectCard3DProps) {
-  const ref = useRef<HTMLDivElement>(null);
-
-  const { scrollYProgress } = useScroll({
-    target: ref,
-    offset: ["start end", "center center"],
-  });
-
-  const rotateX = useTransform(scrollYProgress, [0, 1], [15, 0]);
-  const translateZ = useTransform(scrollYProgress, [0, 1], [-60, 0]);
-  const opacity = useTransform(scrollYProgress, [0, 0.4], [0, 1]);
-
-  const rotateXSpring = useSpring(rotateX, { stiffness: 80, damping: 20 });
-  const translateZSpring = useSpring(translateZ, { stiffness: 80, damping: 20 });
-
-  return (
-    <div ref={ref} className="perspective-container">
-      <motion.article
-        style={{
-          rotateX: rotateXSpring,
-          translateZ: translateZSpring,
-          opacity,
-        }}
-        whileHover={{ y: -6, transition: { duration: 0.3, ease: easeOutExpo } }}
-        className="glass-card rounded-2xl overflow-hidden group cursor-pointer h-full"
-      >
-        <a
-          href={project.live || project.github || "#"}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="block p-8 h-full flex flex-col"
-        >
-          {/* Header row */}
-          <div className="flex items-start justify-between mb-4">
-            <span className="text-xs text-foreground-muted font-mono">
-              {String(index + 1).padStart(2, "0")}
-            </span>
-            <div className="btn-circle group-hover:bg-foreground group-hover:border-foreground transition-all duration-300">
-              <ArrowUpRight className="w-4 h-4 group-hover:text-background transition-colors" />
-            </div>
-          </div>
-
-          {/* Title */}
-          <h3 className="text-xl md:text-2xl font-medium tracking-tight mb-3 group-hover:text-accent transition-colors duration-300">
-            {project.title}
-          </h3>
-
-          {/* Description */}
-          <p className="text-foreground-muted leading-relaxed text-sm mb-5 flex-1">
-            {project.description}
-          </p>
-
-          {/* Metric badge */}
-          {project.metric && (
-            <div className="metric-badge mb-5 self-start">{project.metric}</div>
-          )}
-
-          {/* Tech tags */}
-          <div className="flex flex-wrap gap-2 mt-auto">
-            {project.tech.slice(0, 4).map((tech) => (
-              <span key={tech} className="tag">
-                {tech}
-              </span>
-            ))}
-          </div>
-        </a>
-      </motion.article>
-    </div>
-  );
-}
-
-const headerVariants: Variants = {
-  hidden: { opacity: 0, y: 20 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: easeOutExpo } },
+const itemVariants: Variants = {
+  hidden: { opacity: 0, y: 16 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.5, ease: easeOutExpo } },
 };
 
 export function Projects() {
@@ -101,10 +22,10 @@ export function Projects() {
       <div className="container">
         {/* Header */}
         <motion.div
-          variants={headerVariants}
-          initial="hidden"
-          whileInView="visible"
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
+          transition={{ duration: 0.6, ease: easeOutExpo }}
           className="grid-editorial mb-16 md:mb-24"
         >
           <div>
@@ -123,12 +44,60 @@ export function Projects() {
           </div>
         </motion.div>
 
-        {/* 3D Card Grid */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+        {/* Editorial numbered list */}
+        <motion.div
+          variants={listVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true }}
+          className="border-b border-[var(--border)]"
+        >
           {projects.map((project, index) => (
-            <ProjectCard3D key={project.id} project={project} index={index} />
+            <motion.div key={project.id} variants={itemVariants}>
+              <a
+                href={project.live || project.github || "#"}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group flex items-center gap-6 md:gap-10 py-7 md:py-9 border-t border-[var(--border)] transition-all duration-300 hover:bg-[var(--neutral-100)] hover:-mx-5 hover:px-5 md:hover:-mx-8 md:hover:px-8 lg:hover:-mx-12 lg:hover:px-12"
+              >
+                {/* Index number */}
+                <span
+                  className="text-number shrink-0 w-14 select-none transition-colors duration-300 group-hover:text-[var(--accent)]"
+                  aria-hidden="true"
+                >
+                  {String(index + 1).padStart(2, "0")}
+                </span>
+
+                {/* Title + metric + description */}
+                <div className="flex-1 min-w-0">
+                  <div className="flex flex-wrap items-baseline gap-x-4 gap-y-1 mb-1.5">
+                    <h3 className="text-xl md:text-2xl font-medium tracking-tight group-hover:text-[var(--accent)] transition-colors duration-300">
+                      {project.title}
+                    </h3>
+                    {project.metric && (
+                      <span className="metric-badge shrink-0">{project.metric}</span>
+                    )}
+                  </div>
+                  <p className="text-meta hidden md:block line-clamp-1">
+                    {project.description}
+                  </p>
+                </div>
+
+                {/* Tech tags — desktop only */}
+                <div className="hidden lg:flex flex-wrap gap-2 shrink-0 max-w-[260px] justify-end">
+                  {project.tech.slice(0, 3).map((tech) => (
+                    <span key={tech} className="tag">{tech}</span>
+                  ))}
+                </div>
+
+                {/* Arrow circle */}
+                <div className="btn-circle shrink-0 ml-2 group-hover:bg-[var(--foreground)] group-hover:border-[var(--foreground)] transition-all duration-300">
+                  <ArrowUpRight className="w-4 h-4 group-hover:text-[var(--background)] transition-colors duration-300" />
+                </div>
+              </a>
+            </motion.div>
           ))}
-        </div>
+        </motion.div>
       </div>
     </section>
   );

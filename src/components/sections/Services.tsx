@@ -4,7 +4,7 @@ import { useRef, useState } from "react";
 import { motion, Variants } from "framer-motion";
 import { ArrowUpRight, Bot, Smartphone, Code2, Rss } from "lucide-react";
 
-const CALENDLY_URL = "https://calendly.com/itsareebahmedkhan";
+const CALENDLY_URL = "https://calendly.com/itsareebahmedkhan/30min";
 
 const easeOutExpo = [0.16, 1, 0.3, 1] as const;
 

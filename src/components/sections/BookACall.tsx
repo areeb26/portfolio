@@ -4,7 +4,7 @@ import { motion, Variants } from "framer-motion";
 import { Calendar, ArrowRight } from "lucide-react";
 import { MagneticButton } from "@/components/ui/magnetic-button";
 
-const CALENDLY_URL = "https://calendly.com/itsareebahmedkhan";
+const CALENDLY_URL = "https://calendly.com/itsareebahmedkhan/30min";
 
 const easeOutExpo = [0.16, 1, 0.3, 1] as const;
 

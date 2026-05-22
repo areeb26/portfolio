@@ -5,7 +5,7 @@ import { motion, useScroll, useTransform, useSpring, Variants } from "framer-mot
 import { ArrowDown, ArrowRight, Calendar } from "lucide-react";
 import { MagneticButton } from "@/components/ui/magnetic-button";
 
-const CALENDLY_URL = "https://calendly.com/itsareebahmedkhan";
+const CALENDLY_URL = "https://calendly.com/itsareebahmedkhan/30min";
 
 const statChips = [
   "3,000+ certificates automated",

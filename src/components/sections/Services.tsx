@@ -1,83 +1,97 @@
 "use client";
 
-import { useState } from "react";
-import { motion, Variants } from "framer-motion";
-import { Plus, ArrowUpRight, Bot, Smartphone, Code2, Rss } from "lucide-react";
-import type { LucideIcon } from "lucide-react";
+import { useRef } from "react";
+import { motion, useMotionValue, useSpring, type Variants } from "framer-motion";
+import { ArrowUpRight, Bot, Code2, Rss, Smartphone } from "lucide-react";
 
 const CALENDLY_URL = "https://calendly.com/itsareebahmedkhan/30min";
 const easeOutExpo = [0.16, 1, 0.3, 1] as const;
 
-interface ServiceItem {
-  id: number;
-  number: string;
-  icon: LucideIcon;
-  title: string;
-  tagline: string;
-  description: string;
-  features: string[];
-}
-
-const services: ServiceItem[] = [
+const services = [
   {
     id: 1,
-    number: "01",
     icon: Bot,
     title: "AI Automation Systems",
     tagline: "Replace manual work with intelligent workflows",
-    description:
-      "End-to-end automation pipelines that handle repetitive workflows, connect your tools, and run 24/7 without supervision. Built on n8n with custom logic for your exact use case.",
     features: ["n8n Pipelines", "API Integrations", "Scheduled Jobs"],
   },
   {
     id: 2,
-    number: "02",
     icon: Smartphone,
     title: "WhatsApp Business Bots",
     tagline: "Booking, support, sales — all on WhatsApp",
-    description:
-      "Custom WhatsApp experiences that handle customer conversations automatically — from lead capture and booking to payment collection and support escalation via Meta Business API.",
     features: ["Meta Business API", "Booking Flows", "Payment Links"],
   },
   {
     id: 3,
-    number: "03",
     icon: Code2,
     title: "Full-Stack AI Apps",
     tagline: "From idea to deployed product in weeks",
-    description:
-      "Production-ready web applications with AI capabilities baked in. Database design, API architecture, frontend — delivered as a complete, deployable product that scales.",
     features: ["Next.js", "FastAPI", "Claude AI"],
   },
   {
     id: 4,
-    number: "04",
     icon: Rss,
     title: "Content Automation",
     tagline: "AI-powered content pipelines at scale",
-    description:
-      "Automated pipelines that generate, schedule, and post content across platforms. Viral script generation, automated reel clipping, and analytics-driven scheduling.",
     features: ["Social Auto-Post", "Script Generation", "Reel Clipping"],
   },
 ];
 
+interface MagneticCardProps {
+  children: React.ReactNode;
+  className?: string;
+}
+
+function MagneticCard({ children, className = "" }: MagneticCardProps) {
+  const ref = useRef<HTMLDivElement>(null);
+  const x = useMotionValue(0);
+  const y = useMotionValue(0);
+  const sx = useSpring(x, { stiffness: 180, damping: 18 });
+  const sy = useSpring(y, { stiffness: 180, damping: 18 });
+
+  return (
+    <motion.div
+      ref={ref}
+      onMouseMove={(event) => {
+        const rect = ref.current?.getBoundingClientRect();
+        if (!rect) return;
+        x.set((event.clientX - rect.left - rect.width / 2) * 0.08);
+        y.set((event.clientY - rect.top - rect.height / 2) * 0.08);
+      }}
+      onMouseLeave={() => {
+        x.set(0);
+        y.set(0);
+      }}
+      style={{ x: sx, y: sy }}
+      className={className}
+    >
+      {children}
+    </motion.div>
+  );
+}
+
 const containerVariants: Variants = {
   hidden: { opacity: 0 },
-  visible: { opacity: 1, transition: { staggerChildren: 0.08 } },
+  visible: { opacity: 1, transition: { staggerChildren: 0.1 } },
 };
 
-const rowVariants: Variants = {
-  hidden: { opacity: 0, y: 20 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.5, ease: easeOutExpo } },
+const cardVariants: Variants = {
+  hidden: { opacity: 0, y: 40, rotate: -1, filter: "blur(8px)" },
+  visible: {
+    opacity: 1,
+    y: 0,
+    rotate: 0,
+    filter: "blur(0px)",
+    transition: { duration: 0.65, ease: easeOutExpo },
+  },
 };
 
 export function Services() {
-  const [open, setOpen] = useState<number | null>(null);
-
   return (
-    <section id="services" className="section bg-[var(--background-alt)]">
-      <div className="container">
-        {/* Header */}
+    <section id="services" className="section relative overflow-hidden">
+      <div className="absolute inset-0 bg-[linear-gradient(180deg,transparent,var(--background-alt),transparent)]" />
+      <div className="container relative z-10">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -101,94 +115,56 @@ export function Services() {
           </div>
         </motion.div>
 
-        {/* Accordion list */}
         <motion.div
           variants={containerVariants}
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true }}
-          className="border-t border-[var(--border)]"
+          className="grid gap-5 md:grid-cols-2"
         >
-          {services.map((service) => {
+          {services.map((service, index) => {
             const Icon = service.icon;
-            const isOpen = open === service.id;
-
             return (
-              <motion.div
-                key={service.id}
-                variants={rowVariants}
-                className="border-b border-[var(--border)]"
-              >
-                {/* Row trigger */}
-                <button
-                  onClick={() => setOpen(isOpen ? null : service.id)}
-                  className="w-full flex items-center gap-6 md:gap-10 py-7 md:py-9 text-left group cursor-pointer"
-                  aria-expanded={isOpen}
-                >
-                  {/* Number */}
-                  <span className="text-number shrink-0 w-14 select-none transition-colors duration-300 group-hover:text-[var(--accent)]">
-                    {service.number}
-                  </span>
-
-                  {/* Icon + title + tagline */}
-                  <div className="flex-1 min-w-0">
-                    <div className="flex items-center gap-3 mb-1.5">
-                      <Icon className="w-4 h-4 text-[var(--foreground-muted)] shrink-0" />
-                      <h3 className="text-xl md:text-2xl font-medium tracking-tight group-hover:text-[var(--accent)] transition-colors duration-300">
-                        {service.title}
-                      </h3>
-                    </div>
-                    <p className="text-meta hidden md:block">{service.tagline}</p>
-                  </div>
-
-                  {/* Deliverable count */}
-                  <span className="hidden md:block text-meta shrink-0">
-                    {service.features.length} deliverables
-                  </span>
-
-                  {/* Toggle */}
-                  <div className="btn-circle shrink-0 transition-all duration-300 group-hover:border-[var(--accent)] group-hover:text-[var(--accent)]">
-                    <motion.div
-                      animate={{ rotate: isOpen ? 45 : 0 }}
-                      transition={{ duration: 0.35, ease: easeOutExpo }}
-                    >
-                      <Plus className="w-4 h-4" />
-                    </motion.div>
-                  </div>
-                </button>
-
-                {/* Expandable content — grid-template-rows for perf */}
-                <div
-                  style={{
-                    display: "grid",
-                    gridTemplateRows: isOpen ? "1fr" : "0fr",
-                    transition: "grid-template-rows 0.45s cubic-bezier(0.16, 1, 0.3, 1)",
-                  }}
-                >
-                  <div style={{ overflow: "hidden" }}>
-                    <div className="pb-10 pl-[5.5rem] md:pl-[6.5rem] pr-4 md:pr-[5rem]">
-                      <div className="flex flex-col md:flex-row gap-8 md:gap-16 pt-2">
-                        <p className="text-body flex-1">{service.description}</p>
-                        <div className="shrink-0 flex flex-col gap-5">
-                          <div className="flex flex-wrap gap-2">
-                            {service.features.map((f) => (
-                              <span key={f} className="tag">{f}</span>
-                            ))}
-                          </div>
-                          <a
-                            href={CALENDLY_URL}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="link-arrow text-sm font-medium"
-                          >
-                            Book a call{" "}
-                            <ArrowUpRight className="w-4 h-4 shrink-0" />
-                          </a>
-                        </div>
+              <motion.div key={service.id} variants={cardVariants}>
+                <MagneticCard className="h-full">
+                  <article className="group relative flex h-full min-h-[280px] flex-col overflow-hidden border border-[var(--border)] bg-[oklch(98%_0.01_72_/_0.72)] p-8 backdrop-blur-sm transition-colors duration-300 hover:border-[var(--foreground)]">
+                    <div className="absolute -right-10 -top-10 h-36 w-36 rounded-full bg-[var(--accent)] opacity-0 blur-3xl transition-opacity duration-300 group-hover:opacity-20" />
+                    <div className="absolute inset-x-0 top-0 h-px origin-left scale-x-0 bg-[var(--accent)] transition-transform duration-500 group-hover:scale-x-100" />
+                    <div className="relative z-10 mb-7 flex items-center justify-between">
+                      <div className="flex h-12 w-12 items-center justify-center border border-[var(--border)] bg-[var(--accent-subtle)] text-[var(--accent)] transition-transform duration-300 group-hover:scale-110">
+                        <Icon className="h-5 w-5" />
                       </div>
+                      <span className="font-display text-6xl leading-none tracking-[-0.06em] text-[var(--neutral-300)]">
+                        {String(index + 1).padStart(2, "0")}
+                      </span>
                     </div>
-                  </div>
-                </div>
+
+                    <h3 className="relative z-10 mb-2 text-2xl font-medium tracking-tight transition-colors duration-300 group-hover:text-[var(--accent)]">
+                      {service.title}
+                    </h3>
+                    <p className="relative z-10 mb-6 flex-1 text-foreground-muted">
+                      {service.tagline}
+                    </p>
+
+                    <div className="relative z-10 mb-7 flex flex-wrap gap-2">
+                      {service.features.map((feature) => (
+                        <span key={feature} className="tag">
+                          {feature}
+                        </span>
+                      ))}
+                    </div>
+
+                    <a
+                      href={CALENDLY_URL}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="relative z-10 mt-auto inline-flex items-center gap-2 text-sm font-semibold uppercase tracking-[0.12em] text-foreground-muted transition-colors hover:text-[var(--accent)]"
+                    >
+                      Book a Call
+                      <ArrowUpRight className="h-4 w-4" />
+                    </a>
+                  </article>
+                </MagneticCard>
               </motion.div>
             );
           })}

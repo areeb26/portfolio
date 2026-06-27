@@ -1,94 +1,76 @@
 "use client";
 
-import { motion, Variants } from "framer-motion";
-import { Calendar, ArrowRight } from "lucide-react";
+import { motion, type Variants } from "framer-motion";
+import { ArrowRight, Calendar } from "lucide-react";
 import { MagneticButton } from "@/components/ui/magnetic-button";
 
 const CALENDLY_URL = "https://calendly.com/itsareebahmedkhan/30min";
-
 const easeOutExpo = [0.16, 1, 0.3, 1] as const;
 
 const containerVariants: Variants = {
   hidden: { opacity: 0 },
-  visible: {
-    opacity: 1,
-    transition: { staggerChildren: 0.12, delayChildren: 0.1 },
-  },
+  visible: { opacity: 1, transition: { staggerChildren: 0.12, delayChildren: 0.1 } },
 };
 
 const itemVariants: Variants = {
-  hidden: { opacity: 0, y: 40 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.7, ease: easeOutExpo } },
+  hidden: { opacity: 0, y: 44, filter: "blur(8px)" },
+  visible: {
+    opacity: 1,
+    y: 0,
+    filter: "blur(0px)",
+    transition: { duration: 0.75, ease: easeOutExpo },
+  },
 };
 
 export function BookACall() {
   return (
-    <section id="contact" className="section bg-foreground text-background overflow-hidden relative">
-      {/* Background accent glow */}
-      <div
-        className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] rounded-full blur-[120px] pointer-events-none"
-        style={{ backgroundColor: "rgba(180, 60, 30, 0.08)" }}
+    <section id="contact" className="section relative overflow-hidden bg-foreground text-background">
+      <motion.div
+        className="absolute top-1/2 left-1/2 h-[720px] w-[720px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[var(--accent)] opacity-10 blur-[120px]"
+        animate={{ scale: [1, 1.16, 1], rotate: [0, 8, 0] }}
+        transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
       />
 
-      <div className="container relative z-10 text-center max-w-3xl mx-auto">
-        <motion.div
-          variants={containerVariants}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true }}
-        >
-          {/* Label */}
+      <div className="container relative z-10 mx-auto max-w-4xl text-center">
+        <motion.div variants={containerVariants} initial="hidden" whileInView="visible" viewport={{ once: true }}>
           <motion.div variants={itemVariants}>
-            <span className="text-xs font-semibold tracking-widest uppercase text-neutral-400 mb-6 block">
+            <span className="mb-6 block text-xs font-semibold uppercase tracking-widest text-neutral-400">
               Let&apos;s Talk
             </span>
           </motion.div>
 
-          {/* Headline */}
-          <motion.h2
-            variants={itemVariants}
-            className="text-headline text-background mb-6"
-          >
+          <motion.h2 variants={itemVariants} className="text-headline mb-6 text-background">
             Ready to automate
             <br />
             the <em className="not-italic text-accent-light">slow parts?</em>
           </motion.h2>
 
-          {/* Subtext */}
-          <motion.p
-            variants={itemVariants}
-            className="text-neutral-400 text-lg leading-relaxed mb-12 max-w-md mx-auto"
-          >
+          <motion.p variants={itemVariants} className="mx-auto mb-12 max-w-md text-lg leading-relaxed text-neutral-400">
             Book a free 30-min call. Tell me your problem. I&apos;ll tell you if
             I can solve it.
           </motion.p>
 
-          {/* CTA */}
           <motion.div variants={itemVariants} className="flex justify-center">
             <MagneticButton
               href={CALENDLY_URL}
-              className="inline-flex items-center gap-3 bg-background text-foreground px-10 py-5 font-semibold text-sm tracking-wide uppercase hover:bg-accent hover:text-white transition-colors duration-300 animate-pulse-idle"
+              className="group inline-flex items-center gap-3 bg-background px-10 py-5 text-sm font-semibold uppercase tracking-wide text-foreground transition-colors duration-300 hover:bg-accent hover:text-background"
               strength={0.25}
             >
-              <Calendar className="w-5 h-5" />
+              <Calendar className="h-5 w-5" />
               Book a Free Call
-              <ArrowRight className="w-4 h-4" />
+              <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
             </MagneticButton>
           </motion.div>
 
-          {/* Reassurance */}
           <motion.div
             variants={itemVariants}
-            className="mt-10 flex flex-col md:flex-row items-center justify-center gap-4 md:gap-8 text-sm text-neutral-500"
+            className="mt-10 flex flex-col items-center justify-center gap-4 text-sm text-neutral-500 md:flex-row md:gap-8"
           >
             <span>No commitment. No pitch deck. Just a conversation.</span>
-            <span className="hidden md:block text-neutral-700">·</span>
+            <span className="hidden text-neutral-700 md:block">·</span>
             <span>Usually respond within 24 hours.</span>
-            <span className="hidden md:block text-neutral-700">·</span>
-            <a
-              href="mailto:itsareebahmedkhan@gmail.com"
-              className="text-neutral-400 hover:text-neutral-200 transition-colors"
-            >
+            <span className="hidden text-neutral-700 md:block">·</span>
+            <a href="mailto:itsareebahmedkhan@gmail.com" className="text-neutral-400 transition-colors hover:text-neutral-200">
               itsareebahmedkhan@gmail.com
             </a>
           </motion.div>

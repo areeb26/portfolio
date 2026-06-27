@@ -1,31 +1,107 @@
 "use client";
 
-import { motion, Variants } from "framer-motion";
-import { ArrowUpRight } from "lucide-react";
-import { projects } from "@/data/projects";
+import { motion, type Variants } from "framer-motion";
+import { Bot, Link2, Mic, Scissors, Smartphone, Users } from "lucide-react";
+import { BentoGrid, type BentoItem } from "@/components/ui/bento-grid";
 
+const CALENDLY_URL = "https://calendly.com/itsareebahmedkhan/30min";
 const easeOutExpo = [0.16, 1, 0.3, 1] as const;
 
-const listVariants: Variants = {
-  hidden: { opacity: 0 },
-  visible: { opacity: 1, transition: { staggerChildren: 0.07 } },
+const headerVariants: Variants = {
+  hidden: { opacity: 0, y: 24, filter: "blur(8px)" },
+  visible: {
+    opacity: 1,
+    y: 0,
+    filter: "blur(0px)",
+    transition: { duration: 0.7, ease: easeOutExpo },
+  },
 };
 
-const itemVariants: Variants = {
-  hidden: { opacity: 0, y: 16 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.5, ease: easeOutExpo } },
-};
+const bentoItems: BentoItem[] = [
+  {
+    title: "Certificate Automation System",
+    description:
+      "FastAPI + n8n pipeline generates personalised certificates, uploads to Cloudinary, and delivers verified URLs — 12 seconds per cert, 3,000 certs processed.",
+    icon: <Bot />,
+    status: "400 hrs saved",
+    meta: "3,000+ certificates · 400 hrs eliminated",
+    tags: ["FastAPI", "Postgres", "n8n", "Cloudinary"],
+    cta: "Book a similar build",
+    ctaHref: CALENDLY_URL,
+    colSpan: 2,
+  },
+  {
+    title: "WhatsApp AI Education Bot",
+    description:
+      "Arabic grammar Q&A bot for SarfKiDunya and NahwKiDunya. Matches questions across 5,000+ records, summarises with AI, served reliably at scale.",
+    icon: <Users />,
+    status: "15,000+ daily users",
+    meta: "15k users · live daily",
+    tags: ["n8n", "Claude AI", "WhatsApp API"],
+    cta: "Build mine",
+    ctaHref: CALENDLY_URL,
+    colSpan: 1,
+  },
+  {
+    title: "WhatsApp Service Booking Bot",
+    description:
+      "Full end-to-end booking on WhatsApp — browse services, select workers, receive payment URLs. No app download needed.",
+    icon: <Smartphone />,
+    status: "End-to-end flow",
+    meta: "Bookings · Payments · Notifications",
+    tags: ["Meta WhatsApp API", "n8n", "Firebase"],
+    cta: "Book a call",
+    ctaHref: CALENDLY_URL,
+    colSpan: 1,
+  },
+  {
+    title: "LinkedIn Outreach Automation",
+    description:
+      "Personalised connection + follow-up sequences on LinkedIn. 12 pilot users running it daily, saving hours every week.",
+    icon: <Link2 />,
+    status: "12 pilots live",
+    meta: "5–10 hrs/week saved per user",
+    tags: ["n8n", "Webhooks", "Claude AI"],
+    cta: "Book a call",
+    ctaHref: CALENDLY_URL,
+    colSpan: 1,
+  },
+  {
+    title: "Conversational AI Voice Agent",
+    description:
+      "Open-source ElevenLabs alternative — custom prompts, live call switching, conversation logs, and webhook integrations. Fully self-hosted.",
+    icon: <Mic />,
+    status: "Open source",
+    meta: "FastAPI · Claude AI · Webhooks",
+    tags: ["FastAPI", "Claude AI", "Python"],
+    cta: "Discuss a project",
+    ctaHref: CALENDLY_URL,
+    colSpan: 1,
+  },
+  {
+    title: "AI Video Clipper Tool",
+    description:
+      "Feed a YouTube link or video file — Whisper AI identifies the best moments, cuts viral-ready clips, and applies captions automatically. Minutes, not hours.",
+    icon: <Scissors />,
+    status: "In production",
+    meta: "Video → reels in minutes",
+    tags: ["Python", "Whisper AI", "FFmpeg", "n8n"],
+    cta: "Build for my content",
+    ctaHref: CALENDLY_URL,
+    colSpan: 3,
+  },
+];
 
 export function Projects() {
   return (
-    <section id="work" className="section">
-      <div className="container">
-        {/* Header */}
+    <section id="work" className="section relative overflow-hidden">
+      <div className="absolute inset-x-0 top-24 h-56 bg-[radial-gradient(circle_at_center,oklch(51%_0.18_32_/_0.12),transparent_55%)]" />
+      <div className="container relative z-10">
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
+          variants={headerVariants}
+          initial="hidden"
+          whileInView="visible"
           viewport={{ once: true }}
-          transition={{ duration: 0.6, ease: easeOutExpo }}
           className="grid-editorial mb-16 md:mb-24"
         >
           <div>
@@ -44,60 +120,7 @@ export function Projects() {
           </div>
         </motion.div>
 
-        {/* Editorial numbered list */}
-        <motion.div
-          variants={listVariants}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true }}
-          className="border-b border-[var(--border)]"
-        >
-          {projects.map((project, index) => (
-            <motion.div key={project.id} variants={itemVariants}>
-              <a
-                href={project.live || project.github || "#"}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="group flex items-center gap-6 md:gap-10 py-7 md:py-9 border-t border-[var(--border)] transition-all duration-300 hover:bg-[var(--neutral-100)] hover:-mx-5 hover:px-5 md:hover:-mx-8 md:hover:px-8 lg:hover:-mx-12 lg:hover:px-12"
-              >
-                {/* Index number */}
-                <span
-                  className="text-number shrink-0 w-14 select-none transition-colors duration-300 group-hover:text-[var(--accent)]"
-                  aria-hidden="true"
-                >
-                  {String(index + 1).padStart(2, "0")}
-                </span>
-
-                {/* Title + metric + description */}
-                <div className="flex-1 min-w-0">
-                  <div className="flex flex-wrap items-baseline gap-x-4 gap-y-1 mb-1.5">
-                    <h3 className="text-xl md:text-2xl font-medium tracking-tight group-hover:text-[var(--accent)] transition-colors duration-300">
-                      {project.title}
-                    </h3>
-                    {project.metric && (
-                      <span className="metric-badge shrink-0">{project.metric}</span>
-                    )}
-                  </div>
-                  <p className="text-meta hidden md:block line-clamp-1">
-                    {project.description}
-                  </p>
-                </div>
-
-                {/* Tech tags — desktop only */}
-                <div className="hidden lg:flex flex-wrap gap-2 shrink-0 max-w-[260px] justify-end">
-                  {project.tech.slice(0, 3).map((tech) => (
-                    <span key={tech} className="tag">{tech}</span>
-                  ))}
-                </div>
-
-                {/* Arrow circle */}
-                <div className="btn-circle shrink-0 ml-2 group-hover:bg-[var(--foreground)] group-hover:border-[var(--foreground)] transition-all duration-300">
-                  <ArrowUpRight className="w-4 h-4 group-hover:text-[var(--background)] transition-colors duration-300" />
-                </div>
-              </a>
-            </motion.div>
-          ))}
-        </motion.div>
+        <BentoGrid items={bentoItems} />
       </div>
     </section>
   );

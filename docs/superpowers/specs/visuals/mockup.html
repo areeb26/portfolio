@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio Visual Mockup</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        :root {
+            --background: #0a0a0a;
+            --foreground: #ffffff;
+            --blue-orb: rgba(59, 130, 246, 0.15);
+            --violet-orb: rgba(139, 92, 246, 0.15);
+            --teal-orb: rgba(20, 184, 166, 0.08);
+            --glass-bg: rgba(255, 255, 255, 0.03);
+            --glass-border: rgba(255, 255, 255, 0.08);
+        }
+
+        body {
+            background-color: var(--background);
+            color: var(--foreground);
+            font-family: 'Inter', sans-serif;
+            overflow-x: hidden;
+            margin: 0;
+            padding: 0;
+        }
+
+        /* Gradient Orbs */
+        .orb {
+            position: absolute;
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 0;
+            animation: float 20s infinite alternate ease-in-out;
+        }
+
+        .orb-blue {
+            top: -100px;
+            right: -100px;
+            width: 600px;
+            height: 600px;
+            background: var(--blue-orb);
+            filter: blur(120px);
+        }
+
+        .orb-violet {
+            bottom: -100px;
+            left: -100px;
+            width: 500px;
+            height: 500px;
+            background: var(--violet-orb);
+            filter: blur(120px);
+            animation-delay: -5s;
+        }
+
+        .orb-teal {
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 400px;
+            height: 400px;
+            background: var(--teal-orb);
+            filter: blur(100px);
+            animation-delay: -10s;
+        }
+
+        @keyframes float {
+            0% { transform: translate(0, 0) scale(1); }
+            100% { transform: translate(50px, 30px) scale(1.1); }
+        }
+
+        /* Glassmorphism Card */
+        .glass-card {
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-radius: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .glass-card:hover {
+            box-shadow: 0 20px 40px rgba(59, 130, 246, 0.15);
+            transform: translateY(-6px);
+            background: rgba(255, 255, 255, 0.05);
+            border-color: rgba(255, 255, 255, 0.15);
+        }
+
+        .tech-marquee {
+            display: flex;
+            overflow: hidden;
+            white-space: nowrap;
+            padding: 2rem 0;
+            border-top: 1px solid var(--glass-border);
+            border-bottom: 1px solid var(--glass-border);
+            position: relative;
+        }
+
+        .tech-track {
+            display: flex;
+            gap: 4rem;
+            animation: scroll 40s linear infinite;
+        }
+
+        @keyframes scroll {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+
+        .tech-item {
+            font-size: 1.5rem;
+            font-weight: 500;
+            color: rgba(255, 255, 255, 0.6);
+        }
+    </style>
+</head>
+<body class="p-8 md:p-24 relative min-h-screen flex flex-col gap-24 overflow-hidden">
+    <!-- Orbs -->
+    <div class="orb orb-blue"></div>
+    <div class="orb orb-violet"></div>
+    <div class="orb orb-teal"></div>
+
+    <header class="relative z-10 max-w-4xl">
+        <h1 class="text-6xl md:text-8xl font-bold mb-8 leading-tight">
+            I build systems that <span class="underline decoration-blue-500/50">work</span> while you <span class="text-blue-400 italic font-serif">sleep</span>
+        </h1>
+        <p class="text-xl text-white/60 max-w-xl">
+            AI Automation Expert & Full-Stack Developer specializing in n8n, Claude AI, and intelligent systems.
+        </p>
+    </header>
+
+    <!-- Tech Marquee Mockup -->
+    <div class="tech-marquee relative z-10 -mx-24 px-24">
+        <div class="tech-track">
+            <span class="tech-item">n8n</span>
+            <span class="tech-item">Claude AI</span>
+            <span class="tech-item">Gemini</span>
+            <span class="tech-item">Next.js</span>
+            <span class="tech-item">TypeScript</span>
+            <span class="tech-item">Python</span>
+            <span class="tech-item">Supabase</span>
+            <span class="tech-item">n8n</span>
+            <span class="tech-item">Claude AI</span>
+            <span class="tech-item">Gemini</span>
+            <span class="tech-item">Next.js</span>
+            <span class="tech-item">TypeScript</span>
+            <span class="tech-item">Python</span>
+            <span class="tech-item">Supabase</span>
+        </div>
+    </div>
+
+    <!-- Cards Mockup -->
+    <div class="grid md:grid-cols-3 gap-8 relative z-10">
+        <div class="glass-card p-8 flex flex-col gap-4">
+            <div class="text-blue-400 font-mono text-sm">01</div>
+            <h3 class="text-2xl font-semibold">AI Workflows</h3>
+            <p class="text-white/60">Automate repetitive tasks with custom n8n agents and LLM integrations.</p>
+        </div>
+        <div class="glass-card p-8 flex flex-col gap-4">
+            <div class="text-blue-400 font-mono text-sm">02</div>
+            <h3 class="text-2xl font-semibold">Content Scale</h3>
+            <p class="text-white/60">Generate high-quality multi-channel content at scale with AI pipelines.</p>
+        </div>
+        <div class="glass-card p-8 flex flex-col gap-4">
+            <div class="text-blue-400 font-mono text-sm">03</div>
+            <h3 class="text-2xl font-semibold">Full-Stack Apps</h3>
+            <p class="text-white/60">Production-ready Next.js applications powered by robust backend systems.</p>
+        </div>
+    </div>
+
+    <section class="relative z-10 max-w-2xl">
+        <span class="text-blue-500 font-bold uppercase tracking-widest text-xs mb-4 block">About Section (Fixed)</span>
+        <h2 class="text-4xl font-bold mb-6">Also known as Khan Sahib.</h2>
+        <p class="text-xl leading-relaxed text-white/80">
+            I'm an AI Automation Expert and Full-Stack Developer based in Pakistan, working with clients worldwide. I specialize in building intelligent systems that automate workflows, generate content, and scale businesses—without requiring more people.
+        </p>
+    </section>
+</body>
+</html>

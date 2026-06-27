@@ -27,8 +27,8 @@ export const viewport: Viewport = {
 export const metadata: Metadata = {
   metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || "https://areebkhan.dev"),
   title: {
-    default: "Areeb Khan — AI Automation & Full-Stack",
-    template: "%s — Areeb Khan",
+    default: "Areeb Khan | AI Automation & Full-Stack",
+    template: "%s | Areeb Khan",
   },
   description:
     "I build AI systems that work while you sleep. n8n automations, AI agents, and full-stack applications.",
@@ -61,7 +61,7 @@ export const metadata: Metadata = {
     locale: "en_US",
     url: "https://areebkhan.dev",
     siteName: "Areeb Khan",
-    title: "Areeb Khan — AI Automation & Full-Stack",
+    title: "Areeb Khan | AI Automation & Full-Stack",
     description:
       "I build AI systems that work while you sleep.",
     images: [
@@ -75,7 +75,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Areeb Khan — AI Automation & Full-Stack",
+    title: "Areeb Khan | AI Automation & Full-Stack",
     description: "I build AI systems that work while you sleep.",
     images: ["/og-image.svg"],
     creator: "@AreebNarrates",

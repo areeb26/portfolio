@@ -2,7 +2,7 @@
 
 import { motion } from "framer-motion";
 import { ArrowUp } from "lucide-react";
-import { GithubIcon, LinkedinIcon, InstagramIcon } from "@/components/icons/SocialIcons";
+import { GithubIcon, InstagramIcon, LinkedinIcon } from "@/components/icons/SocialIcons";
 
 const socialLinks = [
   { name: "LinkedIn", href: "https://linkedin.com/in/areebkhan", icon: LinkedinIcon },
@@ -23,31 +23,24 @@ function scrollToTop() {
 
 export function Footer() {
   return (
-    <footer className="py-12 border-t border-border relative">
+    <footer className="relative border-t border-border py-12">
       <div className="container">
-        <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-8">
-          {/* Left */}
+        <div className="flex flex-col items-start justify-between gap-8 md:flex-row md:items-center">
           <div>
-            <div className="text-lg font-medium mb-1">Areeb Ahmed Khan</div>
+            <div className="mb-1 text-lg font-medium">Areeb Ahmed Khan</div>
             <p className="text-sm text-foreground-muted">
-              © 2026 · All rights reserved
+              Copyright 2026 / All rights reserved
             </p>
           </div>
 
-          {/* Center - Nav */}
           <nav className="flex flex-wrap gap-6">
             {navLinks.map((link) => (
-              <a
-                key={link.name}
-                href={link.href}
-                className="text-sm text-foreground-muted hover:text-foreground transition-colors link-hover"
-              >
+              <a key={link.name} href={link.href} className="link-hover text-sm text-foreground-muted transition-colors hover:text-foreground">
                 {link.name}
               </a>
             ))}
           </nav>
 
-          {/* Right - Socials */}
           <div className="flex items-center gap-4">
             {socialLinks.map((link) => (
               <a
@@ -55,28 +48,27 @@ export function Footer() {
                 href={link.href}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-foreground-muted hover:text-foreground transition-colors"
+                className="text-foreground-muted transition-colors hover:text-foreground"
                 aria-label={link.name}
               >
-                <link.icon className="w-5 h-5" />
+                <link.icon className="h-5 w-5" />
               </a>
             ))}
           </div>
         </div>
       </div>
 
-      {/* Back to top */}
       <motion.button
         onClick={scrollToTop}
-        initial={{ opacity: 0, scale: 0.8 }}
+        initial={{ opacity: 0, scale: 0.92 }}
         whileInView={{ opacity: 1, scale: 1 }}
         viewport={{ once: false }}
-        whileHover={{ scale: 1.1 }}
-        whileTap={{ scale: 0.95 }}
-        className="fixed bottom-8 right-8 w-12 h-12 bg-foreground text-background rounded-full flex items-center justify-center shadow-lg hover:bg-accent transition-colors duration-300 z-50"
+        whileHover={{ scale: 1.06 }}
+        whileTap={{ scale: 0.97 }}
+        className="fixed bottom-8 right-8 z-50 flex h-12 w-12 items-center justify-center rounded-full bg-foreground text-background shadow-lg transition-colors duration-300 hover:bg-accent"
         aria-label="Back to top"
       >
-        <ArrowUp className="w-5 h-5" />
+        <ArrowUp className="h-5 w-5" />
       </motion.button>
     </footer>
   );

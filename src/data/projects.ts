@@ -2,7 +2,8 @@ export const projects = [
   {
     id: 1,
     title: "Certificate Automation System",
-    description: "Automated certificate generation for 3 learning apps. FastAPI + n8n pipeline generates, uploads to Cloudinary, and delivers cert URLs in 12 seconds flat.",
+    description:
+      "Automated certificate generation for 3 learning apps. FastAPI + n8n pipeline generates, uploads to Cloudinary, and delivers cert URLs in 12 seconds flat.",
     metric: "3,000+ certs · 400 hrs saved",
     tech: ["FastAPI", "Postgres", "n8n", "Cloudinary"],
     featured: true,
@@ -12,7 +13,8 @@ export const projects = [
   {
     id: 2,
     title: "WhatsApp Service Booking Bot",
-    description: "End-to-end booking system on WhatsApp. Customers browse services, select nearby workers, and receive payment URLs — all via Meta Business API.",
+    description:
+      "End-to-end booking system on WhatsApp. Customers browse services, select nearby workers, and receive payment URLs — all via Meta Business API.",
     metric: "Full end-to-end booking flow",
     tech: ["Meta WhatsApp API", "n8n", "Webhooks", "Firebase"],
     featured: true,
@@ -22,7 +24,8 @@ export const projects = [
   {
     id: 3,
     title: "LinkedIn Outreach Automation",
-    description: "Automated personalized connection + follow-up sequence on LinkedIn. 12 pilot users running it daily with dramatically reduced manual effort.",
+    description:
+      "Automated personalized connection + follow-up sequence on LinkedIn. 12 pilot users running it daily with dramatically reduced manual effort.",
     metric: "5–10 hrs/week saved · 12 pilots",
     tech: ["n8n", "Webhooks", "Claude AI"],
     featured: false,
@@ -32,7 +35,8 @@ export const projects = [
   {
     id: 4,
     title: "Conversational AI Voice Agent",
-    description: "Full-stack voice agent inspired by ElevenLabs but built entirely on open-source tools. Supports custom prompts, call switching, conversation logs, and webhook integrations.",
+    description:
+      "Full-stack voice agent inspired by ElevenLabs but built entirely on open-source tools. Supports custom prompts, call switching, conversation logs, and webhook integrations.",
     metric: "Open-source ElevenLabs alternative",
     tech: ["FastAPI", "Claude AI", "Python", "Webhooks"],
     featured: true,
@@ -42,7 +46,8 @@ export const projects = [
   {
     id: 5,
     title: "WhatsApp AI Education Bot",
-    description: "AI-powered Arabic grammar Q&A bot for SarfKiDunya and NahwKiDunya apps. Matches questions to 5000+ Q&A records, summarizes with AI, serves 15k+ daily users.",
+    description:
+      "AI-powered Arabic grammar Q&A bot for SarfKiDunya and NahwKiDunya apps. Matches questions to 5000+ Q&A records, summarizes with AI, serves 15k+ daily users.",
     metric: "15,000+ daily users",
     tech: ["n8n", "Google Sheets", "Claude AI", "WhatsApp API"],
     featured: false,
@@ -52,7 +57,8 @@ export const projects = [
   {
     id: 6,
     title: "AI Video Clipper Tool",
-    description: "Feed it a YouTube link or video file — it identifies the best moments, cuts viral-ready clips, and applies AI-selected captions automatically.",
+    description:
+      "Feed it a YouTube link or video file — it identifies the best moments, cuts viral-ready clips, and applies AI-selected captions automatically.",
     metric: "Video → reels in minutes",
     tech: ["Python", "Whisper AI", "FFmpeg", "n8n"],
     featured: false,
